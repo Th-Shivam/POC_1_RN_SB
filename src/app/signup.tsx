@@ -3,15 +3,23 @@ import { router } from "expo-router";
 import { useState } from "react";
 import { Alert, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 
-export default function LoginScreen() {
-
+export default function SignUpScreen() {
+    const [fullname, setFullname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     return (
 
 
         <View style={styles.container}>
-            <Text style={styles.title}>Login Screen 🔐</Text>
+            <Text style={styles.title}>Sign Up Screen 🔐</Text>
+
+            <TextInput
+                style={styles.input}
+                placeholder="Enter your full name"
+                value={fullname}
+                onChangeText={setFullname}
+            />
 
             <TextInput
                 style={styles.input}
@@ -28,41 +36,49 @@ export default function LoginScreen() {
                 onChangeText={setPassword}
             />
 
+            <TextInput
+                style={styles.input}
+                placeholder="Confirm your password"
+                secureTextEntry
+                value={confirmPassword}
+                onChangeText={setConfirmPassword}
+            />
+
             {/* <Pressable
                 style={styles.button}
                 onPress={() => {
-                    if (!email || !password) {
-                        Alert.alert("Error", "Please fill all fields");
+                    if (password !== confirmPassword) {
+                        Alert.alert("Error", "Passwords do not match");
                         return;
                     }
+                    console.log("Full Name:", fullname);
                     console.log("Email:", email);
                     console.log("Password:", password);
+                    console.log("Confirm Password:", confirmPassword);
                 }}
             >
-                <Text style={styles.buttonText}>Login</Text>
+                <Text style={styles.buttonText}>Sign Up</Text>
             </Pressable> */}
 
-            <CustomButton title="Login" onPress={() => {
-                if (!email || !password) {
-                    Alert.alert("Error", "Please fill all fields");
+
+            <CustomButton title="Sign Up" onPress={() => {
+                if (password !== confirmPassword) {
+                    Alert.alert("Error", "Passwords do not match");
                     return;
                 }
+                console.log("Full Name:", fullname);
                 console.log("Email:", email);
                 console.log("Password:", password);
+                console.log("Confirm Password:", confirmPassword);
             }} />
-
+            
             <View style={styles.signUpContainer}>
-                <Text style={styles.textNormal}>Don't have an account? </Text>
-                <Pressable onPress={() => router.push("/signup")}>
-                    <Text style={styles.signUpText}>Sign up now!</Text>
+                <Text style={styles.textNormal}>Have an account? </Text>
+                <Pressable onPress={() => router.push("/login")}>
+                    <Text style={styles.signUpText}>Login now!</Text>
                 </Pressable>
             </View>
 
-            {/* <Pressable
-                style={styles.button}
-                onPress={() => router.push("/")}>
-                <Text style={styles.buttonText}>Go Back</Text>
-            </Pressable> */}
             <CustomButton title="Go Back" onPress={() => router.push("/")} />
         </View >
 

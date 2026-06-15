@@ -1,5 +1,6 @@
-import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
+import CustomButton from "@/components/ui/CustomButton";
 import { router } from "expo-router";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function HomeScreen() {
   return (
@@ -9,12 +10,13 @@ export default function HomeScreen() {
         Building with React Native + Spring Boot
       </Text>
       <Text style={styles.logo}>🚀</Text>
-      <Pressable
+      {/* <Pressable
         style={styles.button}
         onPress={() => router.push("/login")}
       >
         <Text style={styles.buttonText}>Get Started</Text>
-      </Pressable>
+      </Pressable> */}
+      <CustomButton title="Get Started" onPress={() => router.push("/login")} />
     </View>
   );
 }
