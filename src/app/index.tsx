@@ -10,12 +10,6 @@ export default function HomeScreen() {
         Building with React Native + Spring Boot
       </Text>
       <Text style={styles.logo}>🚀</Text>
-      {/* <Pressable
-        style={styles.button}
-        onPress={() => router.push("/login")}
-      >
-        <Text style={styles.buttonText}>Get Started</Text>
-      </Pressable> */}
       <CustomButton title="Get Started" onPress={() => router.push("/login")} />
     </View>
   );
