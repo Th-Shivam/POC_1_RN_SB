@@ -1,7 +1,8 @@
 import CustomButton from "@/components/ui/CustomButton";
+import CustomInput from "@/components/ui/CustomInput";
 import { router } from "expo-router";
 import { useState } from "react";
-import { Alert, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 
 export default function LoginScreen() {
 
@@ -13,34 +14,18 @@ export default function LoginScreen() {
         <View style={styles.container}>
             <Text style={styles.title}>Login Screen 🔐</Text>
 
-            <TextInput
-                style={styles.input}
+            <CustomInput
                 placeholder="Enter your email"
                 value={email}
                 onChangeText={setEmail}
             />
 
-            <TextInput
-                style={styles.input}
+            <CustomInput
                 placeholder="Enter your password"
-                secureTextEntry
                 value={password}
                 onChangeText={setPassword}
+                secureTextEntry
             />
-
-            {/* <Pressable
-                style={styles.button}
-                onPress={() => {
-                    if (!email || !password) {
-                        Alert.alert("Error", "Please fill all fields");
-                        return;
-                    }
-                    console.log("Email:", email);
-                    console.log("Password:", password);
-                }}
-            >
-                <Text style={styles.buttonText}>Login</Text>
-            </Pressable> */}
 
             <CustomButton title="Login" onPress={() => {
                 if (!email || !password) {
@@ -58,11 +43,6 @@ export default function LoginScreen() {
                 </Pressable>
             </View>
 
-            {/* <Pressable
-                style={styles.button}
-                onPress={() => router.push("/")}>
-                <Text style={styles.buttonText}>Go Back</Text>
-            </Pressable> */}
             <CustomButton title="Go Back" onPress={() => router.push("/")} />
         </View >
 
@@ -82,29 +62,6 @@ const styles = StyleSheet.create({
         fontSize: 28,
         fontWeight: "bold",
         marginBottom: 10,
-    },
-    input: {
-        width: "90%",
-        borderWidth: 1,
-        borderColor: "#ccc",
-        borderRadius: 10,
-        padding: 12,
-        marginTop: 15,
-        fontSize: 16,
-    },
-    button: {
-        marginTop: 30,
-        width: "90%",
-        alignItems: "center",
-        backgroundColor: "#2563eb",
-        paddingHorizontal: 24,
-        paddingVertical: 12,
-        borderRadius: 10,
-    },
-    buttonText: {
-        color: "white",
-        fontSize: 16,
-        fontWeight: "600",
     },
     signUpContainer: {
         flexDirection: "row",
