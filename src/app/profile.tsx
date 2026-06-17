@@ -1,10 +1,24 @@
 import CustomButton from "@/components/ui/CustomButton";
 import { useAuth } from "@/contexts/AuthContext";
+import { clearAuthSession } from "@/services/authSession";
 import { router } from "expo-router";
+import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function ProfileScreen() {
 	const { user } = useAuth();
+	const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+	const handleLogout = async () => {
+		setIsLoggingOut(true);
+
+		try {
+			await clearAuthSession();
+			router.replace("/login" as never);
+		} finally {
+			setIsLoggingOut(false);
+		}
+	};
 
 	return (
 		<View style={styles.container}>
@@ -15,6 +29,13 @@ export default function ProfileScreen() {
 				<Text style={styles.label}>Email</Text>
 				<Text style={styles.value}>{user?.email ?? "Unknown email"}</Text>
 			</View>
+
+			<CustomButton
+				title="Logout"
+				onPress={handleLogout}
+				loading={isLoggingOut}
+				disabled={isLoggingOut}
+			/>
 
 			<CustomButton title="Go Back Home" onPress={() => router.replace("/")} />
 		</View>
