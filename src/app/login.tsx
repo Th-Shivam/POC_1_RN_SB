@@ -134,7 +134,6 @@ export default function LoginScreen() {
                 </Pressable>
             </View>
 
-            <CustomButton title="Go Back" onPress={() => router.push("/")} disabled={isSubmitting} />
         </View >
 
 
